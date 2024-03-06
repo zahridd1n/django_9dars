@@ -20,7 +20,7 @@ def index(request):
         'fotter': fotter,
 
     }
-    return render(request, 'index.html', context)
+    return render(request, 'front/index.html', context)
 
 
 
@@ -36,7 +36,7 @@ def contact(request):
         except:
             ...
 
-    return render(request, 'contact.html',context= {'fotter':models.Fotter.objects.last()})
+    return render(request, 'front/contact.html',context= {'fotter':models.Fotter.objects.last()})
 
 
 
@@ -51,7 +51,7 @@ def about(request):
 
     }
 
-    return render(request, 'about.html',context)
+    return render(request, 'front/about.html',context)
 
 
 def pricing(request):
@@ -69,7 +69,7 @@ def pricing(request):
 
     }
 
-    return render(request, 'price.html',context)
+    return render(request, 'front/price.html',context)
 
 
 def service(request):
@@ -84,4 +84,4 @@ def service(request):
         'fotter':fotter,
     }
 
-    return render(request, 'service.html', context)
+    return render(request, 'front/service.html', context)
