@@ -194,21 +194,39 @@
                             </a>
                             <div class="collapse" id="sidebarDashboards">
                                 <ul class="side-nav-second-level">
+                                    <hr>
                                     <li>
-                                        <a href="dashboard-analytics.html">Analytics</a>
+                                        <a href="{% url 'create_banner' %}">Banner yaratish</a>
                                     </li>
                                     <li>
-                                        <a href="index.html">Ecommerce</a>
+                                        <a href="{% url 'list_banner' %}">Bannerlar ro'yxati</a>
+                                    </li><hr>
+                                    <li>
+                                        <a href="{% url 'create_aboutus' %}">About yaratish</a>
                                     </li>
                                     <li>
-                                        <a href="dashboard-projects.html">Projects</a>
+                                        <a href="{% url 'list_aboutus' %}">Aboutlar ro'yxati</a>
+                                    </li>
+                                    <hr>
+                                    <li>
+                                        <a href="{% url 'create_price' %}">Price yaratish</a>
                                     </li>
                                     <li>
-                                        <a href="dashboard-crm.html">CRM</a>
+                                        <a href="{% url 'list_price' %}">Pricelar ro'yxati</a>
+                                    </li>
+                                    <hr>
+                                    
+                                    <li>
+                                        <a href="{% url 'create_service' %}">Service yaratish</a>
                                     </li>
                                     <li>
-                                        <a href="dashboard-wallet.html">E-Wallet</a>
+                                        <a href="{% url 'list_service' %}">Servicelar  ro'yxati</a>
                                     </li>
+                                    <hr>    
+                                    <li>
+                                        <a href="{% url 'list_contacts' %}">Contaktlar ro'yxati</a>
+                                    </li>
+                                    <hr>
                                 </ul>
                             </div>
                         </li>
@@ -259,7 +277,7 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-8">
-                                <h4 class="header-title">Bannerlar ro'yxati</h4>
+                                <h4 class="header-title">Servicelar ro'yxati</h4>
                                 <table class="table table-striped table-centered mb-0">
                                 <thead>
                                     <tr>
@@ -274,12 +292,12 @@
                                     {% for service in services %}
                                     <tr>
                                         <td>{{forloop.counter}}</td>
-                                        <td> <img src="{{service.icon.url}}" alt="table-user" class="me-2 rounded-circle" /></td>
+                                        <td> <img src="{{service.icon.url}}" alt="table-user" class="me-2 " /></td>
                                         <td>{{service.name}}</td>
                                         <td>{{service.body}}</td>
                                         <td class="table-action">
-                                            <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                            <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                            <a href="{% url 'detail_service' service.id %}" class="action-icon"> <i class=" ri-share-forward-2-line"></i></a>    
+                                        
                                         </td>
                                     </tr>
                                     {% endfor %}

@@ -189,21 +189,39 @@
                             </a>
                             <div class="collapse" id="sidebarDashboards">
                                 <ul class="side-nav-second-level">
+                                    <hr>
                                     <li>
-                                        <a href="dashboard-analytics.html">Analytics</a>
+                                        <a href="{% url 'create_banner' %}">Banner yaratish</a>
                                     </li>
                                     <li>
-                                        <a href="index.html">Ecommerce</a>
+                                        <a href="{% url 'list_banner' %}">Bannerlar ro'yxati</a>
+                                    </li><hr>
+                                    <li>
+                                        <a href="{% url 'create_aboutus' %}">About yaratish</a>
                                     </li>
                                     <li>
-                                        <a href="dashboard-projects.html">Projects</a>
+                                        <a href="{% url 'list_aboutus' %}">Aboutlar ro'yxati</a>
+                                    </li>
+                                    <hr>
+                                    <li>
+                                        <a href="{% url 'create_price' %}">Price yaratish</a>
                                     </li>
                                     <li>
-                                        <a href="dashboard-crm.html">CRM</a>
+                                        <a href="{% url 'list_price' %}">Pricelar ro'yxati</a>
+                                    </li>
+                                    <hr>
+                                    
+                                    <li>
+                                        <a href="{% url 'create_service' %}">Service yaratish</a>
                                     </li>
                                     <li>
-                                        <a href="dashboard-wallet.html">E-Wallet</a>
+                                        <a href="{% url 'list_service' %}">Servicelar  ro'yxati</a>
                                     </li>
+                                    <hr>    
+                                    <li>
+                                        <a href="{% url 'list_contacts' %}">Contaktlar ro'yxati</a>
+                                    </li>
+                                    <hr>
                                 </ul>
                             </div>
                         </li>
@@ -271,8 +289,7 @@
                                         <td>{{about.body}}</td>
                                      
                                         <td class="table-action">
-                                            <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                            <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                            <a href="{% url 'detail_aboutus' about.id %}" class="action-icon"> <i class=" ri-share-forward-2-line"></i></a>    
                                         </td>
                                     </tr>
                                     {% endfor %}
