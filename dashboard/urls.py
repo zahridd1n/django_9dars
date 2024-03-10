@@ -1,7 +1,10 @@
 from django.urls import path
 from . import views
+
+app_name = 'dashboard'
+
 urlpatterns = [
-    path('', views.index),
+    path('', views.index, name='index'),
     path('create_banner/', views.create_banner, name='create_banner'),
     path('list_banner/', views.list_banner, name='list_banner'),
     path('detail_banner/<int:id>/', views.detail_banner, name='detail_banner'),
@@ -25,4 +28,11 @@ urlpatterns = [
     path('list_contacts', views.list_contact, name='list_contacts'),
     path('detail_contact/<int:id>/', views.detail_contact, name='detail_contact'),
     path('edit_contact/<int:id>/', views.edit_contact, name='edit_contact'),
+    #auth
+    path('register/', views.register, name='register'),
+    path('log-in/', views.log_in, name='log-in'),
+    path('log-out/', views.log_out, name='log-out'),
+    # path('profile', views.profile, name='profile'),
+    # path('edit_profile', views.edit_profile, name='edit_profile'),
+    # path('change_password', views.change_password, name='change_password'),
 ]
