@@ -110,7 +110,22 @@
 
         <!-- Auth fluid right content -->
         <div class="auth-fluid-right text-center" id="register-banner">
+            {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <div id="message_container" class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert" style="position: fixed; z-index: 100; right:20px; top: 80px; width: 600px;">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <strong> <i class="ri-check-line me-2"></i> Success - </strong> {{message}}
+                </div>
+            {% elif message.tags == 'error' %}
+            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert" style="position: fixed; z-index: 100; right:20px; top: 80px; width: 600px;">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong> <i class="ri-close-circle me-2"></i> Error - </strong> {{message}}
+            </div>
+            {%endif %}
+            {% endfor %}
+
             <div class="auth-user-testimonial">
+                
                 <h2 class="mb-3">HOSTIT REGISTER</h2>
                 <p class="lead"><i class="mdi mdi-format-quote-open"></i> It's a elegent templete. I love it very much! . <i class="mdi mdi-format-quote-close"></i>
                 </p>
@@ -127,6 +142,13 @@
 
     <!-- App js -->
     <script src="{% static 'dashboard/js/app.min.js' %}"></script>
+    <script>
+        let message_ele = document.getElementById('message_container');
+
+        setTimeout(function() {
+            message_ele.style.display = 'none';
+        }, 3000);
+    </script>
 
 </body>
 

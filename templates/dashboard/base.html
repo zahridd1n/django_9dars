@@ -67,6 +67,7 @@
                             <i class="mdi mdi-menu"></i>
                         </button>
 
+                        
                         <!-- Horizontal Menu Toggle Button -->
                         <button class="navbar-toggle" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
                             <div class="lines">
@@ -77,10 +78,35 @@
                         </button>
 
                         <!-- Topbar Search Form -->
+                        <div class="app-search dropdown d-none d-lg-block">
+                            <form method="get" action="{% url 'dashboard:query' %}">
+                                <div class="input-group">
+                                    <input name="q" type="search" class="form-control dropdown-toggle" placeholder="Qidiruv..." id="top-search">
+                                    <span class="mdi mdi-magnify search-icon"></span>
+                                    <button class="input-group-text btn btn-primary" type="submit">Qidirmoq</button>
+                                </div>
+                            </form>
 
+                            
+                        </div>
                     </div>
 
                     <ul class="topbar-menu d-flex align-items-center gap-3">
+                        <li class="d-none d-md-inline-block">
+                            <a class="nav-link" href="" data-toggle="fullscreen">
+                                <i class="ri-fullscreen-line font-22"></i>
+                            </a>
+                        </li>
+                        <li class="d-none d-sm-inline-block">
+                            <div class="nav-link" id="light-dark-mode" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="Theme Mode" data-bs-original-title="Theme Mode">
+                                <i class="ri-moon-line font-22"></i>
+                            </div>
+                        </li>
+                        <li class="d-none d-sm-inline-block">
+                            <a class="nav-link" data-bs-toggle="offcanvas" href="#theme-settings-offcanvas">
+                                <i class="ri-settings-3-line font-22"></i>
+                            </a>
+                        </li>
 
                         <li class="dropdown">
                             <a class="nav-link dropdown-toggle arrow-none nav-user px-2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -184,7 +210,7 @@
                         </li>
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#sidebarDashboards2" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
-                                <i class="uil-home-alt"></i>
+                                <i class="ri-file-text-line"></i>
                                 <span> About </span>
                             </a>
                             <div class="collapse" id="sidebarDashboards2">
@@ -204,7 +230,7 @@
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#sidebarDashboards3" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                 <i class="uil-home-alt"></i>
-                                <span> Price </span>
+                                <span> Price</span>
                             </a>
                             <div class="collapse" id="sidebarDashboards3">
                                 <ul class="side-nav-second-level">
@@ -222,7 +248,7 @@
                         </li>
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#sidebarDashboards4" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
-                                <i class="uil-home-alt"></i>
+                                <i class=" ri-apps-2-fill"></i>
                                 <span> Service </span>
                             </a>
                             <div class="collapse" id="sidebarDashboards4">
@@ -241,7 +267,7 @@
                         </li>
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#sidebarDashboards5" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
-                                <i class="uil-home-alt"></i>
+                                <i class=" ri-contacts-book-2-line"></i>
                                 <span> Contact </span>
                             </a>
                             <div class="collapse" id="sidebarDashboards5">
@@ -268,6 +294,23 @@
             <!-- ============================================================== -->
             <!-- Start Page Content here -->
             <!-- ============================================================== -->
+            <!-- Success Alert Modal -->
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    <div id="message_container" class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert" style="position: fixed; z-index: 100; right:20px; top: 140px; width: 600px;">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <strong> <i class="ri-check-line me-2"></i> Success - </strong> {{message}}
+                    </div>
+                {% elif message.tags == 'error' %}
+                <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert" style="position: fixed; z-index: 100; right:20px; top: 140px; width: 600px;">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <strong> <i class="ri-close-circle me-2"></i> Error - </strong> {{message}}
+                </div>
+                {%endif %}
+            {% endfor %}
+
+
+
             {% block content %}
             {% endblock %}
             <!-- ============================================================== -->
@@ -984,6 +1027,14 @@
 
         <!-- App js -->
         <script src="{% static 'dashboard/js/app.min.js' %}"></script>
+
+        <script>
+            let message_ele = document.getElementById('message_container');
+
+            setTimeout(function() {
+                message_ele.style.display = 'none';
+            }, 3000);
+        </script>
 
     </body>
 </html>
